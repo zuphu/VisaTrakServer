@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+	head
+		title VisaTrak
+		link(rel="stylesheet", type="text/css", href="#{BASE_URL}/css/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="#{BASE_URL}/css/screen.css")
+		script(type="text/javascript", src="#{BASE_URL}/javascript/fb-auth.js")
+		script(type="text/javascript", src="#{BASE_URL}/javascript/gplus-auth.js")
+		//- Google API data
+		meta(name="google-signin-clientid", content="876171219979-djvk0ijr6dpap9ls5kpqv1f6nksmdaqr.apps.googleusercontent.com")
+		meta(name="google-signin-scope", content="https://www.googleapis.com/auth/plus.login")
+		meta(name="google-signin-requestvisibleactions", content="http://schema.org/AddAction")
+		meta(name="google-signin-cookiepolicy", content="single_host_origin")
+		meta(name="google-signin-callback", content="signinCallback")
+	body
+		div.container-fluid
+			div.row-fluid
+				div.span4.offset4.register
+					h1 Hello World

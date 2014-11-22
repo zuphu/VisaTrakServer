@@ -1,17 +1,9 @@
 /**
- * HTTP Server
- * Parses request, interfaces with system and handles response.
+ * HTTP Database Server
  *
  * @package server
- * @author Mitch Pierias <mitch@pierias.com>
+ * @author Anthony Guevara <anthony.guev@gmail.com>, Mitch Pierias <mitch@pierias.com>
  */
-
-/*
- * VARIABLES
- */
-
-/* Environment */
-var local = false;
 
 // Modules
 var express = require('express')
@@ -20,15 +12,16 @@ var express = require('express')
 ,	app = express()
 // Setup
 var port = 3000;
-
+// Express setup
+app.set("view engine", "jade");
+app.set("views", __dirname + "/views");
+app.use(express.static(__dirname + "/public"));
+app.use(bodyParser());
+// Routes
 app.get('/', function(req, res) {
-	res.send('<h1>Hello World</h1>');
+	res.render('index', {});
 });
 
-/*
- * SERVER
- */
-
-// Create a HTTP service
+// Start the HTTP service
 var server = http.createServer(app).listen(port);
 console.log("Node server running on port " + port);
