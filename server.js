@@ -24,6 +24,10 @@ app.get('/', function(req, res) {
 	//res.sendFile(__dirname + '/views/about.html');
 });
 
+app.get('/about', function(req, res) {
+	res.sendFile(__dirname + '/views/about.html');
+});
+
 var timestamp = +new Date;
 timestamp = timestamp + 15000;
 
@@ -52,8 +56,11 @@ app.get('/visa/:id?', function(req, res) {
 		});
 	} else {
 		var html = jade.compileFile(__dirname + '/views/modules/visa.jade');
+		var script = require(__dirname + '/public/javascript/modules/counter.js');
+
 		res.json({data:{
-			content: html()
+			content: html(),
+			scripts: [script]
 		}});
 	}
 });

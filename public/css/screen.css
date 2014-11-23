@@ -17,22 +17,122 @@ body {
 	left: 0px;
 	width: 100%;
 	height: 100%;
-
+	box-shadow: 0px 0px 50px rgba(0,0,0,0.2);
 }
 
-.feature {
-	background-color: blue;
+.wrapper {
+	padding: 7%;
+}
+
+div [class*="feature"] {
+	background-color: #efeef3;
+}
+
+.feature-blue {
+	background-color: #4a90e2;
+}
+
+.feature-grey {
+	background-color: #efeef3;
 }
 
 .content {
-	background-color: pink;
+	
 }
 
 .navigation-bar {
-	background-color: green;
+	background-color: #162b43;
 	height: 60px;
+	padding: 10px;
+}
+
+.menu-btn {
+	width: 60px;
+	height: 60px;
+	display: block;
+	float: left;
+	background-color: gold;
+}
+
+.menu-items {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+.menu-items li.cell {
+	color: #FFFFFF;
+}
+
+.menu-items li {
+	height: 50px;
+	border-top: 1px solid #3f3f3f;
+	padding: 20px;
+}
+
+.menu-items li p {
+	display: inline-block;
+	margin: 10px;
+}
+
+.menu-items [class*="icon"] {
+	width: 30px;
+	height: 30px;
+	display: block;
+	float: left;
+	background-color: red;
+}
+.logo {
+	width: 100%;
+	height: 25px;
+	margin-top: 10px;
+	position: relative;
+	color: #FFFFFF;
+	top: 0px;
+	left: 0px;
+	display: block;
+	background: url(../resources/logo-white-sml.png) 50% 0%;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+}
+
+.field {
+	width: 100%;
+	height: 60px;
+	display: block;
+	margin: 25px 0px;
+	text-align: center;
+	border-radius: 10px;
+	font-size: 18px;
+	border: none;
+}
+
+.btn {
+	width: 100%;
+	height: 70px;
+	display: block;
+	margin: 25px 0px;
+	border-radius: 10px;
+	font-size: 18px;
+	color: #FFFFFF;
+	text-transform: uppercase; 
+}
+
+.btn-green {
+	background-color: #2ecc71;
+}
+
+.btn-blue {
+	background-color: #3a71b6;
 }
 
 .aside {
-	background-color: red;
+	background-color: #242424;
+}
+
+.counter {
+	color: #ffffff;
+	width: 90%;
+	height: 90%;
+	display: block;
+	background-color: #000000;
 }

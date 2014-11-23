@@ -1,5 +1,6 @@
-form#login(action="/auth/login", method="POST")
-	input.username(type="text", name="username", placeholder="Username")
-	input.password(type="text", name="password", placeholder="password")
-	button(type="submit", value="submit") Login
-	button(type="cancel", value="register") Create
+div.wrapper
+	form#login(action="/auth/login", method="POST")
+		input.field.username(type="text", name="username", placeholder="Username")
+		input.field.password(type="password", name="password", placeholder="password")
+		button.btn.btn-green.button.login(type="submit", name="login", value="submit") Login
+		button.btn.btn-blue.button.create(type="cancel", name="create", value="register") Create

@@ -20,6 +20,10 @@ function resizeWindow(width, height) {
 	body.style.height = height + 'px';
 }
 
+function animateViewOffset(element, offset) {
+	jQuery(element).animate({left:offset});
+}
+
 function countdown(date, complete) {
 	// Store the date we are counting to
 	var targetTime = date.getTime()
@@ -35,26 +39,14 @@ function countdown(date, complete) {
 		if (timeDiference <= 0) {
 			complete(true);
 			clearInterval(handle);
+		} else {
+			complete(Math.round(timeDiference/1000));
 		}
-
-		console.log(Math.round(timeDiference/1000) + " ramaining");
 
 	}, 1000);
 }
 
 CORE.create_sandbox("notification", function(sandbox) {
-	var view;
-	return {
-		init: function() {
-			view = sandbox.container(0);
-		},
-		destroy: function() {
-
-		}
-	}
-});
-
-CORE.create_sandbox("counter", function(sandbox) {
 	var view;
 	return {
 		init: function() {
@@ -77,11 +69,11 @@ CORE.create_sandbox("feature", function(sandbox) {
 			content = sandbox.find('.content')[0];
 			button = sandbox.find('.menu-btn');
 
-			jQuery.get("http://localhost:3000/visa/0", self.handlePayload);
-
 			sandbox.addEvent(button, 'click', this.toggle);
 
-			sandbox.listen({'update-content': this.updateContent})
+			this.expandMenu()
+
+			sandbox.listen({'update-content': this.updateContent, 'highlight-feature': this.contractMenu})
 		},
 		handlePayload: function(payload) {
 			// Extract date
@@ -89,21 +81,16 @@ CORE.create_sandbox("feature", function(sandbox) {
 			// Pass date to countdown
 			countdown(date, self.handleCountdown);
 		},
-		handleCountdown: function(complete) {
-			if (complete !== true) console.log("Error");
-			//alert('Completed yo!');
-		},
 		updateContent: function(element) {
-			console.log(element)
 			content.innerHTML = element;
 		}, 
 		expandMenu: function() {
-			jQuery(view).animate({left : '30%'}, 600)
+			animateViewOffset(view, '60%');
 			//view.style.left = '30%';
 			showing = true;
 		},
 		contractMenu: function() {
-			view.style.left = '0%';
+			animateViewOffset(view, '0%');
 			showing = false;
 		},
 		toggle: function(sender) {
@@ -143,6 +130,28 @@ CORE.create_sandbox('form', function(sandbox) {
 	}
 });
 
+CORE.create_sandbox('login', function(sandbox) {
+
+	var view, fields, buttons;
+
+	return {
+		init: function() {
+			view = sandbox.container(0);
+			fields = sandbox.find('.field');
+			buttons = sandbox.find('.button');
+
+			sandbox.addEvent(buttons, 'click', this.buttonClicked);
+		},
+		buttonClicked: function(sender) {
+			sender.preventDefault();
+			console.log('button clicked');
+		},
+		destroy: function() {
+
+		}
+	}
+});
+
 CORE.create_sandbox("menu", function(sandbox) {
 
 	var view, self, buttons;
@@ -159,6 +168,7 @@ CORE.create_sandbox("menu", function(sandbox) {
 		},
 		didReceiveResponse: function(payload) {
 			var data = payload.data;
+			sandbox.notify('highlight-feature');
 			sandbox.notify('update-content', data.content);
 		},
 		destroy: function() {
