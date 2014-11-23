@@ -19,9 +19,8 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser());
 // Routes
 app.get('/', function(req, res) {
-	res.render('index', {});
+	res.sendFile(__dirname + '/views/about.html');
 });
-
 // Start the HTTP service
 var server = http.createServer(app).listen(port);
 console.log("Node server running on port " + port);
